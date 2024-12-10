@@ -61,7 +61,6 @@ clearListBtn.addEventListener('click', () => {
     saveItems();
     renderItems();
 });
-
 // Allow adding items by pressing Enter key
 itemInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
@@ -76,3 +75,6 @@ sortBtn.addEventListener('click', sortItemsByPriority);
 searchInput.addEventListener('input', (e) => {
     renderItems(e.target.value);
 });
+
+// Load saved items when page loads
+loadItems();
