@@ -55,3 +55,24 @@ function renderItems(filter = '') {
         shoppingList.appendChild(li);
     });
 }
+// Event listener for clearing the list
+clearListBtn.addEventListener('click', () => {
+    items = [];
+    saveItems();
+    renderItems();
+});
+
+// Allow adding items by pressing Enter key
+itemInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        addItemBtn.click();
+    }
+});
+
+// Event listener for sorting items by priority
+sortBtn.addEventListener('click', sortItemsByPriority);
+
+// Event listener for searching items
+searchInput.addEventListener('input', (e) => {
+    renderItems(e.target.value);
+});
