@@ -55,26 +55,42 @@ function renderItems(filter = '') {
         shoppingList.appendChild(li);
     });
 }
-// Event listener for clearing the list
-clearListBtn.addEventListener('click', () => {
-    items = [];
-    saveItems();
-    renderItems();
-});
-// Allow adding items by pressing Enter key
-itemInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        addItemBtn.click();
+// Event listener for adding items
+addItemBtn.addEventListener('click', () => {
+    const itemName = itemInput.value.trim();
+    const priority = priorityInput.value;
+
+    if (itemName && priority) {
+        const newItem = {
+            name: itemName,
+            priority: priority,
+            purchased: false
+        };
+
+        items.push(newItem);
+        saveItems();
+        renderItems();
+
+        // Clear input fields
+        itemInput.value = '';
+        priorityInput.value = '';
+    } else {
+        alert('Please enter an item name and select a priority');
     }
 });
 
-// Event listener for sorting items by priority
-sortBtn.addEventListener('click', sortItemsByPriority);
+// Function to sort items by priority
+function sortItemsByPriority() {
+    // Define priority order
+    const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
 
-// Event listener for searching items
-searchInput.addEventListener('input', (e) => {
-    renderItems(e.target.value);
-});
+    items.sort((a, b) => {
+        return priorityOrder[b.priority] - priorityOrder[a.priority];
+    });
 
-// Load saved items when page loads
+    saveItems();
+    renderItems();
+}
+
+
 loadItems();
