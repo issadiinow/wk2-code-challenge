@@ -10,16 +10,23 @@
     <div class="container">
         <h1>Shopping List</h1>
 
+        <div class="input-container">
+            <input type="text" id="item-input" placeholder="Enter item name" required>
+            <select id="priority-input" required>
+                <option value="">Select Priority</option>
+                <option value="1">Low Priority</option>
+                <option value="2">Medium Priority</option>
+                <option value="3">High Priority</option>
+            </select>
+            <button id="add-item-btn">Add Item</button>
+        </div>
+        
         <div class="search-container">
             <input type="text" id="search-input" placeholder="Search items">
             <button id="sort-btn">Sort by Priority</button>
         </div>
 
-        <div class="input-container">
-            <input type="text" id="item-input" placeholder="Enter item name">
-            <input type="number" id="priority-input" placeholder="Priority lvl">
-            <button id="add-item-btn">Add Item</button>
-        </div>
+        
 
         <ul id="shopping-list"></ul>
         

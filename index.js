@@ -23,17 +23,25 @@ function loadItems() {
     }
 }
 
-// Function to render items in the list and in order of priority
+/// Function to render items in the list and in order of priority
 function renderItems(filter = '') {
     shoppingList.innerHTML = '';
-    const filteredItems = items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()));
+    const filteredItems = items.filter((item) => 
+        item.name.toLowerCase().includes(filter.toLowerCase())
+    );
 
     filteredItems.forEach((item, index) => {
         const li = document.createElement('li');
         li.classList.toggle('purchased', item.purchased);
 
+        const priorityText = {
+            '1': 'Low',
+            '2': 'Medium',
+            '3': 'High'
+        }[item.priority];
+
         const itemSpan = document.createElement('span');
-        itemSpan.textContent = `${item.name} (Priority: ${item.priority})`;
+        itemSpan.textContent = `${item.name} (Priority: ${priorityText})`;
 
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
@@ -78,6 +86,14 @@ addItemBtn.addEventListener('click', () => {
         alert('Please enter an item name and select a priority');
     }
 });
+
+// Event listener for clearing the list
+clearListBtn.addEventListener('click', () => {
+    items = []; // Clear the items array
+    saveItems(); // Update local storage
+    renderItems(); // Update the list display
+});
+
 
 // Function to sort items by priority
 function sortItemsByPriority() {
