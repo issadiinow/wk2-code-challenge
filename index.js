@@ -8,3 +8,17 @@ const sortBtn = document.getElementById('sort-btn');
 
 // Array to store shopping list items
 let items = [];
+
+// Function to save items to local storage
+function saveItems() {
+    localStorage.setItem('shoppingListItems', JSON.stringify(items));
+}
+
+// Function to load items from local storage
+function loadItems() {
+    const savedItems = localStorage.getItem('shoppingListItems');
+    if (savedItems) {
+        items = JSON.parse(savedItems);
+        renderItems();
+    }
+}
