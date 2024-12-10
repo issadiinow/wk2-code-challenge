@@ -37,3 +37,43 @@ body {
     border-radius: 8px;
     min-width: 200px;
 }
+#add-item-btn,
+#sort-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: none;
+}
+
+#add-item-btn:hover {
+    background-color: #45a049;
+}
+
+#sort-btn {
+    background-color: #007BFF;
+}
+
+#sort-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Clear list button */
+#clear-list-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: center;
+}
+
+#clear-list-btn:hover {
+    background-color: #d32f2f;
+}
+
