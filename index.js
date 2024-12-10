@@ -22,3 +22,36 @@ function loadItems() {
         renderItems();
     }
 }
+
+// Function to render items in the list and in order of priority
+function renderItems(filter = '') {
+    shoppingList.innerHTML = '';
+    const filteredItems = items.filter((item) => item.name.toLowerCase().includes(filter.toLowerCase()));
+
+    filteredItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.classList.toggle('purchased', item.purchased);
+
+        const itemSpan = document.createElement('span');
+        itemSpan.textContent = `${item.name} (Priority: ${item.priority})`;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.addEventListener('click', () => {
+            items.splice(index, 1);
+            saveItems();
+            renderItems(filter);
+        });
+
+        li.addEventListener('click', () => {
+            item.purchased = !item.purchased;
+            saveItems();
+            renderItems(filter);
+        });
+
+        li.appendChild(itemSpan);
+        li.appendChild(deleteBtn);
+        shoppingList.appendChild(li);
+    });
+}
